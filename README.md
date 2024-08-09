@@ -40,7 +40,7 @@ pip list
     SENDGRID_SENDER_ADDRESS="___________"
     ```
 
-# USAGE
+## USAGE
 
 ### Create top trending keywords bar chart by running "app/chart.py" report:
 
@@ -54,7 +54,7 @@ python -m app.chart
 python -m app.email
 ```
 
-# TESTING
+## TESTING
 
 ### Run "test/chart_test.py" report to validate imported HTML data from TikTok: 
     1. Confirm final formatted data table ("email_table") format is a DataFrame
