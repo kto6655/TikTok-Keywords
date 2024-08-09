@@ -1,0 +1,12 @@
+    # This is the "requirements.txt" file
+    # Below are the packages needed to be installed to run the TikTok_Keywords application
+
+
+    requests
+    plotly
+    pytest
+    pandas
+    BeautifulSoup4
+    
+
+
