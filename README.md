@@ -35,10 +35,10 @@ pip list
     3. Obtain SENDGRID_API_KEY and SENDGRID_SENDER_ADDRESS
     4. Create .env file in the root of your respository including your credentials
 
-    ```sh
-    SENDGRID_API_KEY="___________"
-    SENDGRID_SENDER_ADDRESS="___________"
-    ```
+```sh
+SENDGRID_API_KEY="___________"
+SENDGRID_SENDER_ADDRESS="___________"
+```
 
 ## USAGE
 
