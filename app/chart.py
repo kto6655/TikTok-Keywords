@@ -12,7 +12,7 @@ tiktok_raw_data = requests.get(tiktok_url)
 # Translate the HTML data
 from bs4 import BeautifulSoup
 
-tiktok_soup = BeautifulSoup(tiktok_raw_data.text)
+tiktok_soup = BeautifulSoup(tiktok_raw_data.text, features="html.parser")
 
 
 # Parse the HTML data
@@ -43,8 +43,15 @@ email_table = keyword_summary.sort_values(by=['impression'], ascending=[False])
 
 # Create bar chart
 
-from plotly.express import bar
+if __name__ == "__main__":
 
-bar(x=email_table["keyword"], y=email_table["impression"], title="Top 20 Keywords Trending in Paid Ads on TikTok in the United States (Last 7 Days)",
-    labels={"x":"Keyword", "y":"# of Impressions"})
+    from plotly.express import bar
+
+    fig = bar(x=email_table["keyword"], y=email_table["impression"], title="Top 20 Keywords Trending in Paid Ads on TikTok in the United States (Last 7 Days)",
+        labels={"x":"Keyword", "y":"# of Impressions"})
+
+    fig.show()
+
+
+
 
