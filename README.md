@@ -39,16 +39,25 @@ pip list
 
 ### USAGE
 
-Create top trending keywords chart by running "app/chart.py" report:
+Create top trending keywords bar chart by running "app/chart.py" report:
 
 ```sh
 python -m app.chart
 ```
 
-Create email to sender of top trending keywords by running "app/email.py" report:
+Send email to recipient of top trending keywords by running "app/email.py" report:
 
 ```sh
 python -m app.email
 ```
 
 ### TESTING
+
+Run "test/chart_test.py" report to validate imported HTML data from TikTok: 
+    1. Confirm final formatted data table ("email_table") format is a DataFrame
+    2. Confirm there are 20 rows (representing the top 20 keywords)
+    3. Confirm the 5 columns of data are included: keyword, impression, like, share, comment
+
+```sh
+pytest
+```
