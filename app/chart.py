@@ -1,47 +1,54 @@
 # Welcome to the "app/chart.py" file...
 
-# Import the HTML data
+# IMPORTS:  Packages required to perform this application
 
 import requests
+from bs4 import BeautifulSoup
+import json
+from pandas import DataFrame
+
+
+
+# IMPORT HTML DATA
+# Fetch the 'keywords' HTML data from TikTok website:
 
 tiktok_url = "https://ads.tiktok.com/business/creativecenter/keyword-insights/pc/en"
 
 tiktok_raw_data = requests.get(tiktok_url)
 
 
-# Translate the HTML data
-from bs4 import BeautifulSoup
+
+# Translate the HTML data using the BeautifulSoup pacakage:
 
 tiktok_soup = BeautifulSoup(tiktok_raw_data.text, features="html.parser")
 
 
-# Parse the HTML data
+
+# Parse the HTML data and then convert to JSON format:
 
 tiktok_parse = tiktok_soup.find("script", id="__NEXT_DATA__") 
 
-# Convert to JSON format
-
-import json
-
 tiktok_json = json.loads(tiktok_parse.string)
 
-# Parse JSON data
+
+
+# Parse JSON data further:
 
 tiktok_keywords = tiktok_json["props"]["pageProps"]["dehydratedState"]["queries"][0]["state"]["data"]["keywordList"]
 
-# Convert JSON data into DataFrame
 
-from pandas import DataFrame
+
+# Convert JSON data into DataFrame and format data table for Email delivery:
 
 keywords_df = DataFrame(tiktok_keywords)
 
 keyword_summary = keywords_df[["keyword","impression","like","share","comment"]]
 
-# Organize table for chart and email 
-
 email_table = keyword_summary.sort_values(by=['impression'], ascending=[False])
 
-# Create bar chart
+
+
+# [OPTIONAL DATA VIZ] Create bar chart of top keywords by number of impressions:
 
 if __name__ == "__main__":
 

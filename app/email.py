@@ -1,20 +1,24 @@
 # Welcome to the "app/email.py" file...
 
-# Import SENDGRID_API_KEY credentials
+# IMPORTS: Packages required to perform this application
 
 import os
 from dotenv import load_dotenv
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+from app.chart import email_table 
+
+
+# Import SENDGRID_API_KEY credentials:
 
 load_dotenv()
 
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 SENDGRID_SENDER_ADDRESS = os.getenv("SENDGRID_SENDER_ADDRESS")
 
-# Set up custom function for sending email
 
-from sendgrid import SendGridAPIClient
 
-from sendgrid.helpers.mail import Mail
+# Set up custom function for sending email:
 
 def send_email_with_sendgrid(recipient_address=SENDGRID_SENDER_ADDRESS, 
                              subject="What's Trending on TikTok? Latest update inside!",
@@ -43,9 +47,10 @@ def send_email_with_sendgrid(recipient_address=SENDGRID_SENDER_ADDRESS,
     
     return(response)
 
-# Import keywords table from chart.py to place in body of email
 
-from app.chart import email_table   # don't need this line in Colab; just locally
+
+# Import finalized "email_table" from "apps/chart.py" file and construct body of email:
+
 
 email_table_html = email_table.to_html(index=False)
 
@@ -88,6 +93,9 @@ weekly_email = f"""
     
     <p>Note: TikTok 'Keyword Insights' are approximated values, that should not be used as a benchmark for your ad campaigns. TikTok applies algorithms to keep accurate ranking order of performance while protecting business-sensitive data.</p>
 """
+
+
+# Send email with above content:
 
 send_email_with_sendgrid(html_content=weekly_email)
 

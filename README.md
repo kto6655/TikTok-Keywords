@@ -42,7 +42,9 @@ SENDGRID_SENDER_ADDRESS="___________"
 
 ## USAGE
 
-### Create top trending keywords bar chart by running "app/chart.py" report:
+#### Note: Run "app/chart.py" first, to fetch the HTML data that is needed to run "app/email.py" to send email
+
+### Fetch HTML data and create top trending keywords bar chart by running "app/chart.py" report:
 
 ```sh
 python -m app.chart
